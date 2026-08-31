@@ -1,6 +1,8 @@
+<!DOCTYPE html>
 <meta charset="utf-8">
-<title>Ship The Lip</title>
-<meta name="description" content="Ship The Lip runs nightlife vending, dedicated pouch kiosks, and trading card machines across bars, lounges, and retail counters in four markets.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ship Vending</title>
+<meta name="description" content="Ship Vending operates nightlife, pouch, and trading card vending kiosks across bars, lounges, and retail counters in five markets.">
 <style>
   /* ---------- Fonts ---------- */
   @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
@@ -84,8 +86,8 @@
     border-bottom: 1px solid var(--line);
   }
   .nav{ display:flex; align-items:center; justify-content:space-between; height: 68px; }
-  .wordmark{ display:flex; align-items:baseline; gap:.5em; font-family:var(--display); font-weight:800; font-size:1.35rem; letter-spacing:.02em; text-decoration:none; }
-  .wordmark span{ color: var(--brass); }
+  .wordmark{ display:flex; align-items:center; text-decoration:none; }
+  .wordmark img{ height: 52px; width:auto; display:block; }
   nav.links{ display:flex; gap: 28px; }
   nav.links a{
     text-decoration:none; font-size:.92rem; font-weight:500; color: var(--ink-dim);
@@ -144,7 +146,7 @@
   }
   .media-caption{ margin-top: 11px; font-size: .82rem; color: var(--ink-dim); text-align: center; }
   .portrait-frame{ max-width: 300px; margin: 0 auto; }
-  .portrait-frame video{ aspect-ratio: 9/16; }
+  .portrait-frame video, .portrait-frame img{ aspect-ratio: 9/16; object-fit: cover; }
 
   /* ---------- Illustrated signage (Nightlife line, no photo yet) ---------- */
   .machine-stage{ display:flex; justify-content:center; perspective: 1200px; }
@@ -234,7 +236,7 @@
     flex: 0 0 auto; width: 11px; height: 11px; border-radius: 50%; background: var(--brass);
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--brass) 18%, transparent);
   }
-  .markets{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .markets{ display:grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 20px; }
   .market{ border-top: 3px solid var(--brass); background: var(--surface); padding: 22px 20px; border-radius: 2px; }
   .market h3{ font-size: 1.35rem; font-weight: 700; }
   .market p{ margin-top: 10px; font-size: .92rem; color: var(--ink-dim); }
@@ -247,6 +249,37 @@
   .feature h3{ margin-top: 14px; font-size: 1.28rem; font-weight: 700; }
   .feature p{ margin-top: 10px; color: var(--ink-dim); font-size: .96rem; }
 
+  /* ---------- Venue-owner earnings callout ---------- */
+  .earnings{
+    text-align:center; margin-bottom: 40px; padding: 44px 24px;
+    border: 1px solid var(--line); border-radius: 6px; background: var(--surface-2);
+  }
+  .earnings-lead{
+    font-family: var(--mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--brass-strong);
+  }
+  .earnings-figure{
+    margin-top: 8px; font-family: var(--display); font-weight: 900;
+    font-size: clamp(2.8rem, 7vw, 4.6rem); color: var(--ink); line-height: 1;
+  }
+  .earnings-figure span{
+    display:block; font-family: var(--mono); font-weight: 500; font-size: .85rem;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--ink-dim); margin-top: 10px;
+  }
+  .earnings-caption{ margin: 16px auto 0; max-width: 48ch; color: var(--ink-dim); font-size: .95rem; }
+
+  /* ---------- Venue-owner perks ---------- */
+  .perks{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-bottom: 40px; }
+  .perk{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 26px;
+    border-top: 3px solid var(--brass);
+  }
+  .perk .num{
+    font-family: var(--mono); color: var(--brass-strong); font-size: .74rem; letter-spacing: .1em;
+  }
+  .perk h3{ margin-top: 14px; font-size: 1.18rem; font-weight: 700; }
+  .perk p{ margin-top: 10px; color: var(--ink-dim); font-size: .92rem; }
+
   /* ---------- Partner CTA ---------- */
   .partner{
     background: var(--ink); color: var(--bg);
@@ -254,12 +287,34 @@
   }
   :root[data-theme="dark"] .partner, :root:not([data-theme="light"]) .partner{ background: var(--surface-2); }
   @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]) .partner{ background: var(--ink); color: var(--bg); } }
-  .partner h2{ font-size: clamp(1.8rem, 3vw, 2.4rem); color: inherit; }
+  .partner h2, .partner h3{ font-size: clamp(1.6rem, 2.8vw, 2.2rem); color: inherit; }
   .partner p{ margin-top: 14px; color: color-mix(in srgb, var(--bg) 70%, transparent); max-width: 46ch; }
   .partner ul{ list-style:none; margin: 22px 0 0; padding:0; display:grid; gap: 10px; font-size: .94rem; }
   .partner li{ display:flex; gap: 10px; }
   .partner li::before{ content:"—"; color: var(--brass); flex:0 0 auto; }
   .partner .btn-primary{ margin-top: 4px; }
+
+  /* ---------- Contact form ---------- */
+  .contact-form{ max-width: 560px; display:grid; gap: 18px; margin-top: 8px; }
+  .field{ display:flex; flex-direction:column; gap: 7px; }
+  .field label{
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .field input, .field textarea{
+    font: inherit; font-size: .95rem; padding: 12px 14px; border: 1px solid var(--line);
+    border-radius: 2px; background: var(--surface); color: var(--ink);
+  }
+  .field textarea{ min-height: 120px; resize: vertical; }
+  .field input:focus, .field textarea:focus{
+    outline: none; border-color: var(--brass);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--brass) 20%, transparent);
+  }
+  .contact-form .btn{ justify-self: start; border: none; cursor: pointer; }
+  .contact-form .btn:disabled{ opacity: .6; cursor: not-allowed; transform: none; }
+  .form-status{ font-family: var(--mono); font-size: .85rem; margin: 0; }
+  .form-status.success{ color: var(--brass-strong); }
+  .form-status.error{ color: var(--signal); }
 
   /* ---------- Footer ---------- */
   footer{ border-top: 1px solid var(--line); padding: 46px 0; }
@@ -277,6 +332,7 @@
     .stat:nth-child(3){ border-left:none; }
     .features{ grid-template-columns: 1fr; }
     .markets{ grid-template-columns: repeat(2,1fr); }
+    .perks{ grid-template-columns: repeat(2,1fr); }
     .partner{ grid-template-columns: 1fr; padding: 36px 26px; }
     .line-row, .line-row.reverse{ grid-template-columns: 1fr; gap: 26px; }
     .line-row .line-media, .line-row.reverse .line-media{ order: -1; }
@@ -291,14 +347,15 @@
 
 <header class="site">
   <div class="wrap nav">
-    <a class="wordmark" href="#top">SHIP<span>THE</span>LIP</a>
+    <a class="wordmark" href="#top"><img src="assets/images/ship-vending-logo.webp" alt="Ship Vending"></a>
     <nav class="links">
       <a href="#lines">Our Lines</a>
       <a href="#machines">Machines</a>
       <a href="#markets">Markets</a>
       <a href="#partner">Partner With Us</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <a class="nav-cta" href="mailto:dawson@shipthelip.com">GET IN TOUCH</a>
+    <a class="nav-cta" href="#contact">GET IN TOUCH</a>
   </div>
 </header>
 
@@ -307,7 +364,7 @@
     <div>
       <p class="eyebrow">Self-Service Vending Network</p>
       <h1>Retail-grade vending,<br>parked where<br>your <em>regulars</em> already are.</h1>
-      <p class="lede">Ship The Lip runs three vending lines — nightlife kiosks, dedicated pouch machines, and trading card units — inside bars, lounges, and retail counters, stocked with real inventory and serviced before anything ever runs dry.</p>
+      <p class="lede">Ship Vending operates three vending lines — nightlife kiosks, dedicated pouch machines, and trading card units — inside bars, lounges, and retail counters, stocked with real inventory and serviced before anything ever runs dry.</p>
       <div class="ctas">
         <a class="btn btn-primary" href="#lines">See our lines</a>
         <a class="btn btn-ghost" href="#partner">Partner with us</a>
@@ -315,20 +372,18 @@
     </div>
     <div class="hero-media portrait-frame">
       <div class="media-frame">
-        <p class="media-label">Live at Kirby Ice House</p>
-        <video autoplay muted loop playsinline preload="metadata" poster="assets/images/poster-velo-kirby.jpg">
-          <source src="assets/video/machine-velo-kirby.mp4" type="video/mp4">
-        </video>
+        <p class="media-label">Built for Kirby Ice House</p>
+        <img src="assets/images/kirby-lineup-shop.webp" alt="Three Kirby Ice House vending kiosks staged at the Ship Vending shop">
       </div>
-      <p class="media-caption">VELO nicotine pouches — tap-to-pay, always stocked</p>
+      <p class="media-caption">Three flagship units, staged at our shop before rollout</p>
     </div>
   </section>
 
   <section class="stats">
     <div class="wrap">
-      <div class="stat"><b>30+</b><span>Active machines in the field</span></div>
+      <div class="stat"><b>50+</b><span>Venue partnerships</span></div>
       <div class="stat"><b>3</b><span>Vending lines running today</span></div>
-      <div class="stat"><b>4</b><span>Regional markets served</span></div>
+      <div class="stat"><b>5</b><span>Regional markets served</span></div>
       <div class="stat"><b>~1M</b><span>Estimated monthly impressions</span></div>
     </div>
   </section>
@@ -343,22 +398,19 @@
 
       <div class="lines-list">
         <div class="line-row reveal">
-          <div class="line-media">
-            <div class="machine-stage">
-              <div class="machine" aria-hidden="true">
-                <div class="marquee">SHIP&nbsp;THE&nbsp;LIP</div>
-                <div class="glass" id="glass-nightlife"></div>
-                <div class="foot">
-                  <div class="keypad"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                  <div class="reader"><span></span></div>
-                </div>
-              </div>
+          <div class="line-media portrait-frame">
+            <div class="media-frame">
+              <p class="media-label">Live at Kirby Ice House</p>
+              <video autoplay muted loop playsinline preload="metadata" poster="assets/images/poster-velo-kirby.jpg">
+                <source src="assets/video/machine-velo-kirby.mp4" type="video/mp4">
+              </video>
             </div>
+            <p class="media-caption">Flagship nightlife kiosk — tap-to-pay, always stocked, part of the room</p>
           </div>
           <div class="line-text">
             <p class="line-index">LINE 01 — FLAGSHIP</p>
             <h3>Nightlife Vending</h3>
-            <p>Our original line and still the majority of the fleet: multi-product kiosks carrying vapes, disposables, and nicotine pouches, parked inside the bars and lounges where the crowd already is. Illustrated here since this is the line we're still shooting real photos of — everything else on this page is an actual machine.</p>
+            <p>Our original line and still the majority of the fleet: multi-product kiosks carrying vapes, disposables, and nicotine pouches, parked inside the bars and lounges where the crowd already is.</p>
           </div>
         </div>
 
@@ -429,10 +481,11 @@
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Where We Operate</p>
-        <h2>Four markets, one route.</h2>
+        <h2>Five markets, one route.</h2>
         <p>We grew city by city, following the same nightlife and entertainment corridors our venue partners already draw a crowd in.</p>
       </div>
       <div class="route reveal" aria-hidden="true">
+        <div class="node"></div><div class="seg"></div>
         <div class="node"></div><div class="seg"></div>
         <div class="node"></div><div class="seg"></div>
         <div class="node"></div><div class="seg"></div>
@@ -455,9 +508,14 @@
           <span class="tag">MARKET 03</span>
         </div>
         <div class="market reveal">
+          <h3>Austin</h3>
+          <p>Bars and retail counters along the downtown and Rainey Street entertainment districts, running all three of our vending lines.</p>
+          <span class="tag">MARKET 04</span>
+        </div>
+        <div class="market reveal">
           <h3>Nashville</h3>
           <p>Newest market in the network, extending the same route-based service model to a fast-growing nightlife scene.</p>
-          <span class="tag">MARKET 04</span>
+          <span class="tag">MARKET 05</span>
         </div>
       </div>
     </div>
@@ -465,21 +523,76 @@
 
   <section id="partner">
     <div class="wrap">
-      <div class="partner reveal">
-        <div>
-          <p class="eyebrow" style="color:var(--brass)">For Venue Owners</p>
-          <h2>Want one of these behind your bar?</h2>
-          <p>We install, stock, insure, and service the machine — you keep the floor space and a share of every sale. No upfront cost, no staff time spent managing it. We'll help you pick which of our three lines fits your crowd.</p>
-          <ul>
-            <li>Zero cost to install or maintain</li>
-            <li>We handle restocking and servicing on a set schedule</li>
-            <li>Revenue share paid out to you monthly</li>
-          </ul>
+      <div class="section-head reveal">
+        <p class="eyebrow">For Venue Owners</p>
+        <h2>One square foot. Real money every month.</h2>
+        <p>We own the machine, the inventory, the insurance, and the service schedule — you supply a corner of floor space and collect a share of every sale. Nothing to buy, nothing to manage, nothing that lands on your staff.</p>
+      </div>
+      <div class="earnings reveal">
+        <p class="earnings-lead">Up To</p>
+        <p class="earnings-figure">$1,000<span>/ location, per month</span></p>
+        <p class="earnings-caption">Potential passive income per location, paid out through your monthly profit share — no upfront cost and no effort on your end. Actual payout depends on foot traffic and which line we install.</p>
+      </div>
+      <div class="perks">
+        <div class="perk reveal">
+          <p class="num">01 — THE SPACE</p>
+          <h3>Just one square foot</h3>
+          <p>A single kiosk tucks behind the bar, by the door, or on a counter — no renovation, no rewiring, no lost seating.</p>
         </div>
-        <div>
-          <a class="btn btn-primary" href="mailto:dawson@shipthelip.com?subject=Ship%20The%20Lip%20-%20Venue%20Partnership">Start the conversation</a>
+        <div class="perk reveal">
+          <p class="num">02 — THE COST</p>
+          <h3>You spend nothing</h3>
+          <p>We own the hardware and cover installation, insurance, and every restock. If something breaks, we fix it — you never touch a tool or a repair bill.</p>
+        </div>
+        <div class="perk reveal">
+          <p class="num">03 — THE PAYOUT</p>
+          <h3>Profit share, paid monthly</h3>
+          <p>Every sale splits between us — up to $1,000 a month per location. No invoices to send and no register to reconcile, it just shows up.</p>
+        </div>
+        <div class="perk reveal">
+          <p class="num">04 — THE DRAW</p>
+          <h3>An attraction, not just a machine</h3>
+          <p>Regulars start expecting it and first-timers stop to try it — one more reason people pick your bar over the one next door.</p>
         </div>
       </div>
+      <div class="partner reveal">
+        <div>
+          <p class="eyebrow" style="color:var(--brass)">Ready When You Are</p>
+          <h3>Let's find one square foot behind your bar.</h3>
+          <p>Tell us about your space and we'll confirm it's a fit, walk you through the profit share, and get a machine installed — you won't spend a dollar or lift a finger along the way.</p>
+        </div>
+        <div>
+          <a class="btn btn-primary" href="mailto:info@shipvending.com?subject=Ship%20Vending%20-%20Venue%20Partnership">Start the conversation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Get In Touch</p>
+        <h2>Questions, press, or just say hi.</h2>
+        <p>Send us a message and we'll get back to you — or email <a href="mailto:info@shipvending.com" style="color:var(--brass-strong)">info@shipvending.com</a> directly.</p>
+      </div>
+      <form class="contact-form reveal" id="contact-form" action="https://formspree.io/f/mvkozeza" method="POST">
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" required></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New message from shipvending.com">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <button type="submit" class="btn btn-primary">Send message</button>
+        <p class="form-status" id="cf-status" role="status" aria-live="polite" hidden></p>
+      </form>
     </div>
   </section>
 </main>
@@ -487,13 +600,13 @@
 <footer>
   <div class="wrap">
     <div>
-      <a class="wordmark" href="#top">SHIP<span>THE</span>LIP</a>
+      <a class="wordmark" href="#top"><img src="assets/images/ship-vending-logo.webp" alt="Ship Vending"></a>
       <p class="fine">Nightlife, pouch, and trading card vending for bars, lounges, and retail counters.</p>
     </div>
-    <div class="cities">DALLAS · FORT&nbsp;WORTH · HOUSTON · NASHVILLE</div>
+    <div class="cities">DALLAS · FORT&nbsp;WORTH · HOUSTON · AUSTIN · NASHVILLE</div>
     <div class="contact">
-      <a href="mailto:dawson@shipthelip.com">dawson@shipthelip.com</a>
-      <p class="fine">&copy; <span id="year"></span> Ship The Lip. All rights reserved.</p>
+      <a href="mailto:info@shipvending.com">info@shipvending.com</a>
+      <p class="fine">&copy; <span id="year"></span> Ship Vending. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -501,18 +614,52 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Build the illustrated Nightlife-line slot grid with varied brass/signal/steel tones
+  // Contact form -> submits to Formspree via fetch, no page reload or redirect
   (function(){
-    var glass = document.getElementById('glass-nightlife');
-    if (!glass) return;
-    var palette = ['var(--brass)','var(--signal)','var(--ink-dim)','var(--brass-strong)'];
-    for (var i = 0; i < 16; i++){
-      var slot = document.createElement('div');
-      slot.className = 'slot';
-      var c = palette[i % palette.length];
-      slot.style.background = 'color-mix(in srgb, ' + c + ' ' + (28 + (i % 3) * 10) + '%, transparent)';
-      glass.appendChild(slot);
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    var statusEl = document.getElementById('cf-status');
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    function showStatus(message, kind){
+      statusEl.textContent = message;
+      statusEl.className = 'form-status ' + kind;
+      statusEl.hidden = false;
     }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      statusEl.hidden = true;
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(function(response){
+          if (response.ok){
+            form.reset();
+            showStatus("Thanks — we'll get back to you soon.", 'success');
+            return;
+          }
+          return response.json().then(function(data){
+            var message = (data && data.errors && data.errors.length)
+              ? data.errors.map(function(err){ return err.message; }).join(', ')
+              : 'Something went wrong. Please try again, or email us directly.';
+            showStatus(message, 'error');
+          });
+        })
+        .catch(function(){
+          showStatus('Something went wrong. Please try again, or email us directly.', 'error');
+        })
+        .finally(function(){
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send message';
+        });
+    });
   })();
 
   // Reveal-on-scroll
