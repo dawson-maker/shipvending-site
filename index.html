@@ -1,5 +1,6 @@
+<meta charset="utf-8">
 <title>Ship The Lip</title>
-<meta name="description" content="Nicotine vending machines built like signage, stocked and serviced like retail — operating across Dallas–Fort Worth, Houston, Austin, and Nashville.">
+<meta name="description" content="Ship The Lip runs nightlife vending, dedicated pouch kiosks, and trading card machines across bars, lounges, and retail counters in four markets.">
 <style>
   /* ---------- Fonts ---------- */
   @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
@@ -97,7 +98,6 @@
     transition: background .15s ease, color .15s ease;
   }
   .nav-cta:hover{ background: var(--ink); color: var(--bg); }
-  .nav-toggle{ display:none; }
 
   /* ---------- Hero ---------- */
   .hero{
@@ -114,7 +114,7 @@
   }
   .hero h1 em{ font-style: normal; color: var(--brass); }
   .hero p.lede{
-    margin-top: 22px; max-width: 46ch; font-size: 1.1rem; color: var(--ink-dim);
+    margin-top: 22px; max-width: 48ch; font-size: 1.1rem; color: var(--ink-dim);
   }
   .hero .ctas{ display:flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
   .btn{
@@ -128,20 +128,36 @@
   .btn-ghost{ background: transparent; color: var(--ink); border: 1px solid var(--line); }
   .btn-ghost:hover{ border-color: var(--ink); }
 
-  /* ---------- Illustrated machine ---------- */
+  /* ---------- Real media frames (hero + line rows) ---------- */
+  .media-frame{
+    border: 1px solid var(--line); background: var(--surface); border-radius: 6px;
+    padding: 10px; box-shadow: 0 26px 50px -30px #00000050;
+    animation: settle .9s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes settle{ from{ opacity:0; transform: translateY(16px); } to{ opacity:1; transform: translateY(0); } }
+  .media-label{
+    font-family: var(--mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--brass-strong); text-align: center; margin-bottom: 9px;
+  }
+  .media-frame video, .media-frame img{
+    width: 100%; display: block; border-radius: 3px; object-fit: cover; background: var(--bg-soft);
+  }
+  .media-caption{ margin-top: 11px; font-size: .82rem; color: var(--ink-dim); text-align: center; }
+  .portrait-frame{ max-width: 300px; margin: 0 auto; }
+  .portrait-frame video{ aspect-ratio: 9/16; }
+
+  /* ---------- Illustrated signage (Nightlife line, no photo yet) ---------- */
   .machine-stage{ display:flex; justify-content:center; perspective: 1200px; }
   .machine{
-    width: min(300px, 80vw); aspect-ratio: 5 / 8;
+    width: min(280px, 80vw); aspect-ratio: 5 / 8;
     background: linear-gradient(155deg, var(--surface-2), var(--bg-soft));
     border: 1px solid var(--line);
     border-radius: 6px;
     padding: 14px;
     position: relative;
-    box-shadow: 0 30px 60px -30px #00000055, inset 0 1px 0 #ffffff22;
-    transform: rotateY(-6deg) rotateX(2deg);
-    animation: settle 1.1s cubic-bezier(.2,.8,.2,1) both;
+    box-shadow: 0 26px 50px -30px #00000050, inset 0 1px 0 #ffffff22;
+    animation: settle .9s cubic-bezier(.2,.8,.2,1) both;
   }
-  @keyframes settle{ from{ opacity:0; transform: rotateY(-6deg) rotateX(2deg) translateY(18px); } to{ opacity:1; transform: rotateY(-6deg) rotateX(2deg) translateY(0); } }
   .marquee{
     font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; text-align:center;
     color: var(--brass); border: 1px solid var(--glass); border-radius: 3px; padding: 7px 4px;
@@ -163,9 +179,7 @@
   .slot{ aspect-ratio: 1/1.35; border-radius: 2px; position:relative; }
   .slot::after{ content:""; position:absolute; inset: 3px; border-radius: 1px; background: #ffffff1a; }
   .machine .foot{ margin-top: 10px; display:flex; gap: 8px; align-items:center; }
-  .keypad{
-    flex:1; display:grid; grid-template-columns: repeat(3,1fr); gap: 3px;
-  }
+  .keypad{ flex:1; display:grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
   .keypad i{ display:block; aspect-ratio:1.6/1; background: color-mix(in srgb, var(--ink) 8%, transparent); border-radius: 1px; }
   .reader{
     width: 52px; height: 34px; border-radius: 2px; border: 1px solid var(--glass);
@@ -187,26 +201,34 @@
 
   /* ---------- Section shell ---------- */
   section{ padding: 96px 0; }
-  .section-head{ max-width: 620px; margin-bottom: 50px; }
+  .section-head{ max-width: 640px; margin-bottom: 50px; }
   .section-head .eyebrow{ margin-bottom: 14px; }
   .section-head h2{ font-size: clamp(2rem, 3.4vw, 2.8rem); font-weight: 800; }
   .section-head p{ margin-top: 16px; color: var(--ink-dim); font-size: 1.05rem; }
   .reveal{ opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.in{ opacity: 1; transform: none; }
 
-  /* ---------- Feature grid ---------- */
-  .features{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .feature{
-    background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 26px;
+  /* ---------- Our Lines (three verticals) ---------- */
+  .lines-list{ display:flex; flex-direction:column; }
+  .line-row{
+    display:grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items:center;
+    padding: 50px 0; border-top: 1px solid var(--line);
   }
-  .feature .num{ font-family: var(--mono); color: var(--brass); font-size: .82rem; letter-spacing: .08em; }
-  .feature h3{ margin-top: 14px; font-size: 1.28rem; font-weight: 700; }
-  .feature p{ margin-top: 10px; color: var(--ink-dim); font-size: .96rem; }
+  .lines-list .line-row:first-child{ border-top: none; padding-top: 0; }
+  .line-row.reverse{ grid-template-columns: .95fr 1.05fr; }
+  .line-row.reverse .line-media{ order: 2; }
+  .line-row.reverse .line-text{ order: 1; }
+  .line-index{ font-family: var(--mono); font-size: .78rem; color: var(--brass); letter-spacing: .12em; }
+  .line-text h3{ margin-top: 10px; font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 800; }
+  .line-text p{ margin-top: 14px; color: var(--ink-dim); font-size: 1rem; max-width: 52ch; }
+
+  .card-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .card-grid .big{ grid-column: 1 / -1; aspect-ratio: 16/9; overflow:hidden; border-radius: 3px; }
+  .card-grid figure{ margin:0; aspect-ratio: 1/1; overflow:hidden; border-radius: 3px; }
+  .card-grid img{ width:100%; height:100%; object-fit:cover; display:block; }
 
   /* ---------- Markets ---------- */
-  .route{
-    display:flex; align-items:center; margin: 6px 0 46px; overflow-x:auto; padding-bottom: 6px;
-  }
+  .route{ display:flex; align-items:center; margin: 6px 0 46px; overflow-x:auto; padding-bottom: 6px; }
   .route .seg{ flex:1; min-width: 40px; height: 1px; background: var(--line); position:relative; }
   .route .node{
     flex: 0 0 auto; width: 11px; height: 11px; border-radius: 50%; background: var(--brass);
@@ -217,6 +239,13 @@
   .market h3{ font-size: 1.35rem; font-weight: 700; }
   .market p{ margin-top: 10px; font-size: .92rem; color: var(--ink-dim); }
   .market .tag{ margin-top: 14px; display:inline-block; font-family: var(--mono); font-size: .74rem; color: var(--brass-strong); letter-spacing:.05em; }
+
+  /* ---------- Feature grid (hardware) ---------- */
+  .features{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .feature{ background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 26px; }
+  .feature .num{ font-family: var(--mono); color: var(--brass); font-size: .82rem; letter-spacing: .08em; }
+  .feature h3{ margin-top: 14px; font-size: 1.28rem; font-weight: 700; }
+  .feature p{ margin-top: 10px; color: var(--ink-dim); font-size: .96rem; }
 
   /* ---------- Partner CTA ---------- */
   .partner{
@@ -249,6 +278,9 @@
     .features{ grid-template-columns: 1fr; }
     .markets{ grid-template-columns: repeat(2,1fr); }
     .partner{ grid-template-columns: 1fr; padding: 36px 26px; }
+    .line-row, .line-row.reverse{ grid-template-columns: 1fr; gap: 26px; }
+    .line-row .line-media, .line-row.reverse .line-media{ order: -1; }
+    .line-row .line-text, .line-row.reverse .line-text{ order: 2; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -261,6 +293,7 @@
   <div class="wrap nav">
     <a class="wordmark" href="#top">SHIP<span>THE</span>LIP</a>
     <nav class="links">
+      <a href="#lines">Our Lines</a>
       <a href="#machines">Machines</a>
       <a href="#markets">Markets</a>
       <a href="#partner">Partner With Us</a>
@@ -272,32 +305,96 @@
 <main id="top">
   <section class="hero wrap">
     <div>
-      <p class="eyebrow">Nicotine Vending Network</p>
+      <p class="eyebrow">Self-Service Vending Network</p>
       <h1>Retail-grade vending,<br>parked where<br>your <em>regulars</em> already are.</h1>
-      <p class="lede">Ship The Lip runs a fleet of self-service vape and nicotine machines inside bars, lounges, and entertainment venues — stocked with real inventory, monitored daily, and serviced before they ever run dry.</p>
+      <p class="lede">Ship The Lip runs three vending lines — nightlife kiosks, dedicated pouch machines, and trading card units — inside bars, lounges, and retail counters, stocked with real inventory and serviced before anything ever runs dry.</p>
       <div class="ctas">
-        <a class="btn btn-primary" href="#machines">See the machines</a>
+        <a class="btn btn-primary" href="#lines">See our lines</a>
         <a class="btn btn-ghost" href="#partner">Partner with us</a>
       </div>
     </div>
-    <div class="machine-stage">
-      <div class="machine" aria-hidden="true">
-        <div class="marquee">SHIP&nbsp;THE&nbsp;LIP</div>
-        <div class="glass" id="glass-hero"></div>
-        <div class="foot">
-          <div class="keypad"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="reader"><span></span></div>
-        </div>
+    <div class="hero-media portrait-frame">
+      <div class="media-frame">
+        <p class="media-label">Live at Kirby Ice House</p>
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/images/poster-velo-kirby.jpg">
+          <source src="assets/video/machine-velo-kirby.mp4" type="video/mp4">
+        </video>
       </div>
+      <p class="media-caption">VELO nicotine pouches — tap-to-pay, always stocked</p>
     </div>
   </section>
 
   <section class="stats">
     <div class="wrap">
       <div class="stat"><b>30+</b><span>Active machines in the field</span></div>
+      <div class="stat"><b>3</b><span>Vending lines running today</span></div>
       <div class="stat"><b>4</b><span>Regional markets served</span></div>
       <div class="stat"><b>~1M</b><span>Estimated monthly impressions</span></div>
-      <div class="stat"><b>24/7</b><span>Self-service availability</span></div>
+    </div>
+  </section>
+
+  <section id="lines">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What We Run</p>
+        <h2>Three lines, one route.</h2>
+        <p>Same self-serve model, same restocking discipline — three very different aisles depending on what the venue and its crowd actually want.</p>
+      </div>
+
+      <div class="lines-list">
+        <div class="line-row reveal">
+          <div class="line-media">
+            <div class="machine-stage">
+              <div class="machine" aria-hidden="true">
+                <div class="marquee">SHIP&nbsp;THE&nbsp;LIP</div>
+                <div class="glass" id="glass-nightlife"></div>
+                <div class="foot">
+                  <div class="keypad"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                  <div class="reader"><span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="line-text">
+            <p class="line-index">LINE 01 — FLAGSHIP</p>
+            <h3>Nightlife Vending</h3>
+            <p>Our original line and still the majority of the fleet: multi-product kiosks carrying vapes, disposables, and nicotine pouches, parked inside the bars and lounges where the crowd already is. Illustrated here since this is the line we're still shooting real photos of — everything else on this page is an actual machine.</p>
+          </div>
+        </div>
+
+        <div class="line-row reverse reveal">
+          <div class="line-media portrait-frame">
+            <div class="media-frame">
+              <p class="media-label">Outdoor patio install</p>
+              <video autoplay muted loop playsinline preload="metadata" poster="assets/images/poster-alp-outdoor.jpg">
+                <source src="assets/video/machine-alp-outdoor.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p class="media-caption">Dedicated pouch kiosk, wall-mounted for an always-open patio</p>
+          </div>
+          <div class="line-text">
+            <p class="line-index">LINE 02 — POUCH ONLY</p>
+            <h3>Pouch Vending</h3>
+            <p>Single-category kiosks that carry nicotine pouches and nothing else, for venues that want a fast, tobacco-free, no-smoke-or-spit option and nothing more cluttering the screen. Same tap-to-pay checkout and restocking schedule as every other machine we run.</p>
+          </div>
+        </div>
+
+        <div class="line-row reveal">
+          <div class="line-media">
+            <div class="card-grid">
+              <figure class="big"><img src="assets/images/machine-photo-3.webp" alt="Wall-mounted mystery pack vending kiosk at a bar"></figure>
+              <figure><img src="assets/images/machine-photo-1.webp" alt="Trading card vending kiosk in a retail aisle"></figure>
+              <figure><img src="assets/images/machine-photo-2.webp" alt="Trading card vending kiosk near a convenience store checkout"></figure>
+            </div>
+            <p class="media-caption">Mystery pack kiosk (bar wall) · trading card kiosks (retail aisle &amp; checkout)</p>
+          </div>
+          <div class="line-text">
+            <p class="line-index">LINE 03 — NEWEST</p>
+            <h3>Trading Card &amp; Mystery Pack Vending</h3>
+            <p>Our newest line: Pokémon and other trading card packs, plus blind "mystery packs," sold out of retail-ready kiosks in liquor stores, convenience stores, and bars. Same self-serve model, a completely different aisle — and one of our fastest-growing categories.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -306,7 +403,7 @@
       <div class="section-head reveal">
         <p class="eyebrow">The Hardware</p>
         <h2>Built like signage. Run like retail.</h2>
-        <p>Every unit is a lit, branded fixture first — and a fully managed retail point second. Nothing about it feels like an afterthought bolted to the wall.</p>
+        <p>Every unit is a lit, branded fixture first — and a fully managed retail point second, whichever of the three lines it's running. Nothing about it feels like an afterthought bolted to the wall.</p>
       </div>
       <div class="features">
         <div class="feature reveal">
@@ -372,7 +469,7 @@
         <div>
           <p class="eyebrow" style="color:var(--brass)">For Venue Owners</p>
           <h2>Want one of these behind your bar?</h2>
-          <p>We install, stock, insure, and service the machine — you keep the floor space and a share of every sale. No upfront cost, no staff time spent managing it.</p>
+          <p>We install, stock, insure, and service the machine — you keep the floor space and a share of every sale. No upfront cost, no staff time spent managing it. We'll help you pick which of our three lines fits your crowd.</p>
           <ul>
             <li>Zero cost to install or maintain</li>
             <li>We handle restocking and servicing on a set schedule</li>
@@ -391,7 +488,7 @@
   <div class="wrap">
     <div>
       <a class="wordmark" href="#top">SHIP<span>THE</span>LIP</a>
-      <p class="fine">Self-service nicotine vending for bars, lounges, and venues.</p>
+      <p class="fine">Nightlife, pouch, and trading card vending for bars, lounges, and retail counters.</p>
     </div>
     <div class="cities">DALLAS · FORT&nbsp;WORTH · HOUSTON · NASHVILLE</div>
     <div class="contact">
@@ -404,9 +501,10 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Build hero machine slot grid with varied brass/signal/steel tones
+  // Build the illustrated Nightlife-line slot grid with varied brass/signal/steel tones
   (function(){
-    var glass = document.getElementById('glass-hero');
+    var glass = document.getElementById('glass-nightlife');
+    if (!glass) return;
     var palette = ['var(--brass)','var(--signal)','var(--ink-dim)','var(--brass-strong)'];
     for (var i = 0; i < 16; i++){
       var slot = document.createElement('div');
